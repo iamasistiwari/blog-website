@@ -22,8 +22,8 @@ export const Auth = ({ type }: {type: "signup" | "signin"}) =>{
                 password: postInputs.password
             })
             const jwt = res.data.token;
-            localStorage.setItem("token", jwt)
-            navigate('/blog')
+            localStorage.setItem("token", ` Bearer ${jwt}`)
+            navigate('/blogs')
 
         }catch(e){
             alert(`${type} request failed`)
