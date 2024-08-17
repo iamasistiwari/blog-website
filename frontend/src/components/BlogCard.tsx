@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom"
 
 interface BlogCard {
-    id: number
+    id: string
     authorName: string,
     title: string,
-    description: string,
+    content: string,
     publishedDate: string
 }
 
@@ -12,9 +12,12 @@ export const BlogCard = ({
     id,
     authorName,
     title,
-    description,
+    content,
     publishedDate
 }: BlogCard) =>{
+    console.log("HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIjdfohsdfoh")
+
+    console.log(id)
     return <Link to={`/blog/${id}`}>
         <div className="pt-12 cursor-pointer">
             <div className="max-w-screen-md border-b border-gray-100">
@@ -34,12 +37,12 @@ export const BlogCard = ({
                     {title}
                 </div>
                 <div className="font-serif mt-2 max-w-md text-gray-600">
-                    {description.slice(0, 60)+ (description.length >=60 ? "....":null)}
+                    {content.slice(0, 60)+ (content.length >=60 ? "....":null)}
                 </div>
                     
                 <div className="rounded-lg bg-slate-100 w-16 flex justify-center mt-10 mb-4">
                     <div className="text-xsm font-thin p-0.5 ">
-                        {`${Math.ceil(description.length / 100)} min read`}
+                        {`${Math.ceil(content.length / 100)} min read`}
                     </div>
                 </div>
             </div>
@@ -53,7 +56,7 @@ export function Avatar({ authorName, size = "small", onClick, }: { authorName: s
     </div>
 }
 
-function Circle() {
+export function Circle() {
     return <div className="rounded-full h-1 w-1 bg-slate-500">
     </div>
 }
