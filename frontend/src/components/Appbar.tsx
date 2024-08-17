@@ -3,7 +3,7 @@ import { Avatar } from "./BlogCard"
 
 
 export const Appbar = () =>{
-    return <div className="flex justify-between px-10 mt-4 border-b pb-4">
+    return <div className="flex justify-between mt-4 border-b pb-4 px-4 lg:px-10">
         <div className="flex text-3xl font-dm-serif tracking-wider">
             {"Space"}
         </div>

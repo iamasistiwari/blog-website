@@ -30,10 +30,10 @@ export const BlogCard = ({
                         {publishedDate}
                     </div>
                 </div>
-                <div className="font-semibold text-black text-2xl mt-2 max-w-2xl font-ubuntu-700">
+                <div className="font-semibold text-black mt-2 font-ubuntu-700 text-lg lg:text-2xl ">
                     {title}
                 </div>
-                <div className="font-serif mt-2 max-w-md text-gray-600">
+                <div className="font-serif mt-2 text-gray-600 text-sm lg:text-lg">
                     {content.slice(0, 60)+ (content.length >=60 ? "....":null)}
                 </div>
                     
