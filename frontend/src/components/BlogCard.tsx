@@ -15,9 +15,6 @@ export const BlogCard = ({
     content,
     publishedDate
 }: BlogCard) =>{
-    console.log("HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIjdfohsdfoh")
-
-    console.log(id)
     return <Link to={`/blog/${id}`}>
         <div className="pt-12 cursor-pointer">
             <div className="max-w-screen-md border-b border-gray-100">

@@ -24,7 +24,7 @@ export const Blogs = () => {
     return <div>
         <Appbar />
         <div  className="flex justify-center ">
-            <div>
+            <div className="max-w-screen-sm">
                 {blogs.map(blog => <BlogCard
                     id={blog.id}
                     authorName={blog.author.name || "Anonymous"}
