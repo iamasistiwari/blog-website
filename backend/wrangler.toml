@@ -1,0 +1,7 @@
+name = "backend-blog-website"
+compatibility_date = "2024-08-12"
+
+[vars]
+DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiZjMxMmQzZDQtZTk0OC00YmY2LWJlNWUtMmViYjI4N2NhZWViIiwidGVuYW50X2lkIjoiNDZmNGY4YzgwNTA4MmRlYzI3MmM1ZWNmYzA3MzRiOTJlYmVlNGJmNjhlMDE4MjA1YzVmMGJhMjcwZGE2ZjcxMSIsImludGVybmFsX3NlY3JldCI6IjI4ZjI1OTE0LWYwMGYtNGNjYS1iMzc3LTYzMjY4Zjg4Yjc2NCJ9.wlJuFujkcvR2zK0pue85l0gZhKbMd2Oy4oZ-WjGJCcg"
+
+JWT_Secret = "ashish"
