@@ -48,7 +48,7 @@ export const BlogCard = ({
 }
 
 export function Avatar({ authorName, size = "small", onClick, }: { authorName: string; size?: "small" | "big"; onClick?: () => void }){
-    return <div className={`relative inline-flex items-center justify-center ${size === "small"? "w-6 h-6": "w-8 h-8"} overflow-hidden bg-gray-200 rounded-full dark:bg-gray-600 cursor-pointer`}>
+    return <div onClick={onClick} className={`relative inline-flex items-center justify-center ${size === "small"? "w-6 h-6": "w-8 h-8"} overflow-hidden bg-gray-200 rounded-full dark:bg-gray-600 cursor-pointer`}>
         <span className="font-medium text-gray-600 dark:text-gray-300 text-xs">{authorName.charAt(0)}</span>
     </div>
 }
