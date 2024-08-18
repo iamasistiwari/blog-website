@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 import { BACKEND_URL } from "../config";
+import { atomFamily, selectorFamily } from "recoil";
 
 export interface Blog{
     content: string,
@@ -12,25 +13,17 @@ export interface Blog{
     published: boolean
 }
 
-export const useBlog = ({id}: {id: string}) =>{
-    const [loading, setLoading] = useState(false);
-    const [blog, setBlog] = useState<Blog>();
-
-    useEffect(() =>{
-        axios.get(`${BACKEND_URL}/blog/${id}`,{
-            headers:{
-                Authorization: localStorage.getItem("token")
-            }
-        }).then(res =>{
-            setBlog(res.data)
-            setLoading(false)
-        })
-    },[id])
-    return {
-        blog,
-        loading
-    }
-}
+export const useBlogFamily = atomFamily({
+    key: "useBlogFamily",
+    default: selectorFamily({
+        key: "useBlogSelectorFamily",
+        get: ({id}: {id: string | ""}) => async () =>{
+            const res = await axios.get(`${BACKEND_URL}/blog/${id}`,{headers: {Authorization: localStorage.getItem("token")}})
+            const blog: Blog = res.data
+            return blog
+        }
+    })
+})
 
 export const useBlogs = () => {
     const [loading, setLoading] = useState(true);
@@ -47,7 +40,6 @@ export const useBlogs = () => {
                 setLoading(false);
             })
     }, [])
-
     return {
         loading,
         blogs

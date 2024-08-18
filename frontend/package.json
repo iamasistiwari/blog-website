@@ -11,16 +11,27 @@
   },
   "dependencies": {
     "@iamasistiwari/medium-common": "^1.0.0",
+    "@tiptap/core": "^2.6.4",
+    "@tiptap/extension-blockquote": "^2.6.4",
+    "@tiptap/extension-bold": "^2.6.4",
+    "@tiptap/extension-bullet-list": "^2.6.4",
+    "@tiptap/extension-ordered-list": "^2.6.4",
+    "@tiptap/extension-paragraph": "^2.6.4",
+    "@tiptap/extension-placeholder": "^2.6.4",
+    "@tiptap/extension-underline": "^2.6.4",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.4",
     "postcss": "^8.4.41",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.1",
-    "tailwindcss": "^3.4.10"
+    "recoil": "^0.7.7",
+    "tailwindcss": "^3.4.10",
+    "use-sync-external-store": "^1.2.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@types/node": "^22.4.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",

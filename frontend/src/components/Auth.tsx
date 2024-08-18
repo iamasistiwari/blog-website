@@ -3,12 +3,17 @@ import axios from "axios"
 import { ChangeEvent, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { BACKEND_URL } from "../config"
-
+import { useEffect } from "react"
 
 
 
 export const Auth = ({ type }: {type: "signup" | "signin"}) =>{
     const navigate = useNavigate();
+    useEffect(() => {
+        if (localStorage.getItem("token")) {
+            navigate('/blogs');
+        }
+    }, [navigate]);
     const [postInputs, setPostInputs] = useState<SignupInput>({
         name: "",
         email: "",
@@ -22,9 +27,10 @@ export const Auth = ({ type }: {type: "signup" | "signin"}) =>{
                 password: postInputs.password
             })
             const jwt = res.data.token;
+            const authorName = res.data.authorName
             localStorage.setItem("token", ` Bearer ${jwt}`)
+            localStorage.setItem("authorName", authorName)
             navigate('/blogs')
-
         }catch(e){
             alert(`${type} request failed`)
             console.log(e)

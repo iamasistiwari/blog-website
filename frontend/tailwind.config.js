@@ -18,6 +18,7 @@ export default {
       fontFamily: {
         'dm-serif': ['DM Serif Text', 'serif'],  // Adding DM Serif Text
         'ubuntu': ['Ubuntu', 'sans-serif'],
+        'anek': ['Anek Devanagari', 'sans-serif'],
       },
     },
   },
