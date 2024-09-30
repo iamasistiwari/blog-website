@@ -50,7 +50,8 @@ blogRouter.post('/', async (c) => {
             data: {
                 title: body.title,
                 content: body.content,
-                authorId: authorId
+                authorId: authorId,
+                date: new Date
             }
         })
         console.log(blog)
@@ -78,6 +79,7 @@ blogRouter.put('/', async (c) => {
                 id: Number(body.id)
             },
             data: {
+                author: body.title,
                 title: body.title,
                 content: body.content,
                 published: body.published
@@ -103,7 +105,8 @@ blogRouter.get('/bulk', async (c) => {
                     name: true
                 }
             },
-            published: true
+            published: true,
+            date: true
         }
     });
     return c.json({
@@ -129,12 +132,34 @@ blogRouter.get('/:id', async (c) => {
                     select: {
                         name: true
                     }
-                }
+                },
+                date: true
             }
         })
         return c.json(blog)
     }catch(e){
         console.log(e)
         return c.json({message: "can't able to get blog"})
+    }
+})
+
+
+blogRouter.delete('/delete/:id', async (c) => {
+    const postId = c.req.param('id');
+    const authorId = c.get("userId")
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL
+    }).$extends(withAccelerate())
+    try{
+        const res = await prisma.post.delete({
+            where : {
+                authorId: authorId,
+                id: Number(postId)
+            }
+        })
+        return c.json({message: "deleted"})
+    }catch(e){
+        console.log(e)
+        return c.json({message: "can't able to delete the blog"})
     }
 })

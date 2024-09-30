@@ -24,12 +24,12 @@ userRouter.post('/signup', async (c) => {
 
     const body = await c.req.json();
     const { success } = signupInput.safeParse(body);
+    console.log(body)
     if(!success){
         c.status(411)
         return c.json({message: "signup inputs are not correct"})
     }
     try{
-        
         const user = await prisma.user.create({
             data: {
                 name: body.name || null,
