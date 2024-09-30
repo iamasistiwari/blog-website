@@ -36,9 +36,17 @@ export const Blogs = () => {
                     authorName={blog.author.name}
                     title={blog.title}
                     content={blog.content}
-                    publishedDate={"2nd Feb 2024"}
+                    publishedDate={formattedDate(blog.date)}
                 />)}
             </div>
         </div>
     </div>
 }
+const formattedDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+};
+  

@@ -20,29 +20,29 @@ export const BlogCard = ({
         navigate(`/blog/${id}`)
         setTimeout(() => window.scrollTo(0, 0), 0);
     }}>
-        <div className="pt-12 cursor-pointer">
+        <div className="pt-12 cursor-pointer w-[720px]">
             <div className="max-w-screen-md border-b border-gray-100">
                 <div className="flex ">
                     <Avatar authorName={authorName} size="small" />
                     <div className="flex flex-col justify-center pl-2">
                         <Circle />
                     </div>
-                    <div className=" text-sm flex flex-col justify-center font-light pl-2">
+                    <div className=" text-sm flex flex-col justify-center font-normal pl-2">
                         {authorName}
                     </div>
-                    <div className="pl-2 font-thin text-slate-500 text-xsm flex justify-center flex-col">
-                        {publishedDate}
+                    <div className="pl-2 font-light text-slate-700 text-xsm flex justify-center flex-col">
+                        {publishedDate ? publishedDate: "No date found"}
                     </div>
                 </div>
                 <div className="font-semibold text-black mt-2 font-ubuntu-700 text-lg lg:text-2xl ">
                     {title}
                 </div>
                 <div className="font-serif mt-2 text-gray-600 text-sm lg:text-lg">
-                    {content.slice(0, 60)+ (content.length >=60 ? "....":null)}
+                    {content.slice(0, 60)+ (content.length >=60 ? "....":"")}
                 </div>
                     
-                <div className="rounded-lg bg-slate-100 w-16 flex justify-center mt-10 mb-4">
-                    <div className="text-xsm font-thin p-0.5 ">
+                <div className="rounded-full bg-slate-200 w-20 flex justify-center mt-10 mb-4">
+                    <div className="text-xsm font-medium py-2 px-1.5 ">
                         {`${Math.ceil(content.length / 100)} min read`}
                     </div>
                 </div>

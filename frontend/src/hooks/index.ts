@@ -10,7 +10,8 @@ export interface Blog{
     author: {
         name: string
     },
-    published: boolean
+    published: boolean,
+    date: string
 }
 
 export const useBlogFamily = atomFamily({
