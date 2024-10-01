@@ -38,7 +38,7 @@ userRouter.post('/signup', async (c) => {
             }
         })
         const token = await sign({id: user.id}, c.env.JWT_Secret)
-        return c.json({token: token, authorName: user.name})
+        return c.json({token: token, authorName: user.name, email: user.email})
     }catch(e){
         console.log(e)
         c.status(ResponseStatus.Unauthorized)
@@ -69,7 +69,7 @@ userRouter.post('/signin', async (c) => {
             })
         }
         const jwt = await sign({id: user.id}, c.env.JWT_Secret)
-        return c.json({token: jwt, authorName: user.name})
+        return c.json({token: jwt, authorName: user.name, email:user.email})
     }catch(e){
         console.log(e)
     }

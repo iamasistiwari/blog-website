@@ -28,8 +28,10 @@ export const Auth = ({ type }: {type: "signup" | "signin"}) =>{
             })
             const jwt = res.data.token;
             const authorName = res.data.authorName
+            const userEmail = res.data.email
             localStorage.setItem("token", ` Bearer ${jwt}`)
             localStorage.setItem("authorName", authorName)
+            localStorage.setItem("userEmail", userEmail)
             navigate('/blogs')
         }catch(e){
             alert(`${type} request failed`)

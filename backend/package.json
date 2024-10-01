@@ -6,11 +6,11 @@
   },
   "dependencies": {
     "@iamasistiwari/medium-common": "^1.0.0",
-    "@prisma/client": "^5.18.0",
+    "@prisma/client": "^5.20.0",
     "@prisma/extension-accelerate": "^1.2.0",
     "dotenv": "^16.4.5",
     "hono": "^4.5.5",
-    "prisma": "^5.18.0"
+    "prisma": "^5.20.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240529.0",

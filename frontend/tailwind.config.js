@@ -7,16 +7,14 @@ export default {
   theme: {
     extend: {
       fontSize: {
-        // Define your custom font size
-        'sm': '0.70rem', // This is slightly smaller than the default 'sm' size
-        // You can define it to be any size you need, for example:
-        'xsm': '0.65rem', // 13px in rem (16px base) which is between 'xs' and 'sm'
+        'sm': '0.70rem',
+        'xsm': '0.65rem',
       },
       padding: {
-        'pft': '0.2rem', // Custom padding value
+        'pft': '0.2rem',
       },
       fontFamily: {
-        'dm-serif': ['DM Serif Text', 'serif'],  // Adding DM Serif Text
+        'dm-serif': ['DM Serif Text', 'serif'],
         'ubuntu': ['Ubuntu', 'sans-serif'],
         'anek': ['Anek Devanagari', 'sans-serif'],
       },

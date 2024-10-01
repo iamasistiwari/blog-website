@@ -113,6 +113,56 @@ blogRouter.get('/bulk', async (c) => {
         blogs: blogs
     })
 })
+
+
+
+blogRouter.delete('/delete/:id', async (c) => {
+    const postId = c.req.param('id');
+    const authorId = c.get("userId")
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL
+    }).$extends(withAccelerate())
+    try{
+        const res = await prisma.post.delete({
+            where : {
+                authorId: authorId,
+                id: Number(postId)
+            }
+        });
+        return c.json({message: "deleted"})
+    }catch(e){
+        console.log(e)
+        return c.json({message: "can't able to delete the blog"})
+    }
+})
+
+blogRouter.get('/yourBlogs', async (c) => {
+    const authorId = c.get("userId")
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate())
+    const userBlogs = await prisma.post.findMany({
+        where: {
+            authorId
+        },
+        select: {
+            content: true,
+            title: true,
+            id: true,
+            author: {
+                select: {
+                    name: true
+                }
+            },
+            published: true,
+            date: true
+        }
+    });
+    return c.json({
+        blogs: userBlogs
+    })
+})
+
 blogRouter.get('/:id', async (c) => {
     const id = c.req.param("id");
     const prisma = new PrismaClient({
@@ -140,26 +190,5 @@ blogRouter.get('/:id', async (c) => {
     }catch(e){
         console.log(e)
         return c.json({message: "can't able to get blog"})
-    }
-})
-
-
-blogRouter.delete('/delete/:id', async (c) => {
-    const postId = c.req.param('id');
-    const authorId = c.get("userId")
-    const prisma = new PrismaClient({
-        datasourceUrl: c.env.DATABASE_URL
-    }).$extends(withAccelerate())
-    try{
-        const res = await prisma.post.delete({
-            where : {
-                authorId: authorId,
-                id: Number(postId)
-            }
-        })
-        return c.json({message: "deleted"})
-    }catch(e){
-        console.log(e)
-        return c.json({message: "can't able to delete the blog"})
     }
 })

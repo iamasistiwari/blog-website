@@ -46,3 +46,37 @@ export const useBlogs = () => {
         blogs
     }
 }
+
+
+export const useYourBlogFamily = atomFamily({
+    key: "useYourBlogFamily",
+    default: selectorFamily({
+        key: "useYourBlogSelectorFamily",
+        get: () => async () =>{
+            const res = await axios.get(`${BACKEND_URL}/blog/yourBlogs`,{headers: {Authorization: localStorage.getItem("token")}})
+            const blog: Blog = res.data
+            return blog
+        }
+    })
+})
+
+export const useYourBlogs = () => {
+    const [loading, setLoading] = useState(true);
+    const [blogs, setBlogs] = useState<Blog[]>([]);
+
+    useEffect(() => {
+        axios.get(`${BACKEND_URL}/blog/yourBlogs`, {
+            headers: {
+                Authorization: localStorage.getItem("token")
+            }
+        })
+            .then(response => {
+                setBlogs(response.data.blogs);
+                setLoading(false);
+            })
+    }, [])
+    return {
+        loading,
+        blogs
+    }
+}
