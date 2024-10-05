@@ -63,8 +63,9 @@ blogRouter.post('/', async (c) => {
 })
 
 
-blogRouter.put('/', async (c) => {
+blogRouter.put('/edit', async (c) => {
     const body = await c.req.json();
+    const authorId = c.get("userId")
     const { success } = updateBlogInput.safeParse(body);
     if(!success){
         c.status(411)
@@ -76,10 +77,10 @@ blogRouter.put('/', async (c) => {
     try{
         const blog = await prisma.post.update({
             where: {
-                id: Number(body.id)
+                id: Number(body.id),
+                authorId
             },
             data: {
-                author: body.title,
                 title: body.title,
                 content: body.content,
                 published: body.published
@@ -127,9 +128,12 @@ blogRouter.delete('/delete/:id', async (c) => {
             where : {
                 authorId: authorId,
                 id: Number(postId)
+            },select: {
+                id: true
             }
         });
-        return c.json({message: "deleted"})
+        c.status(200)
+        return c.json({message: "deleted", deletedPost:{res} })
     }catch(e){
         console.log(e)
         return c.json({message: "can't able to delete the blog"})
