@@ -26,6 +26,7 @@ export default function UserBlogs() {
     return <div>
         <div>
             {blogs.map(blog => <UserBlogCard
+                key={blog.id}
                 id={blog.id}
                 authorName={blog.author.name}
                 publishedDate={blog.date}

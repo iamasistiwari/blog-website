@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import { BACKEND_URL } from '../config';
+import { useNavigate } from 'react-router-dom';
 
 
 interface BlogCard {
@@ -17,6 +18,7 @@ export default function UserBlogCard({
     title,
     publishedDate
 }: BlogCard) {
+    const navigate = useNavigate();
   return (
     <div className='w-[1080px]'>
       <div className="border-2 rounded-[30px] mt-4 flex flex-col justify-center pl-8 py-4  hover:bg-slate-100 hover:cursor-pointer transition-all duration-200">
@@ -28,7 +30,9 @@ export default function UserBlogCard({
             </div>
 
             <div className='flex my-2 mr-9 space-x-7'>
-                <div key={"pencil"} className='border-2 border-slate-400 p-1 rounded-xl hover:bg-slate-200 transition-all duration-100 hover:cursor-pointer'>
+                <div key={"pencil"} onClick={() => {
+                    navigate(`/editPost/${id}`)
+                }} className='border-2 border-slate-400 p-1 rounded-xl hover:bg-slate-200 transition-all duration-100 hover:cursor-pointer'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
                     </svg>
@@ -60,6 +64,7 @@ const formattedDate = (dateString: string) => {
 
 const deletePost = async (id: string) => {
     const token = localStorage.getItem("token");
+    console.log(id)
     if (!token) {
         alert("User is not authenticated");
         return;
@@ -70,7 +75,8 @@ const deletePost = async (id: string) => {
                 Authorization: `${token}`
             }
         });
-        alert("Your post is deleted");
+        console.log(res)
+        alert("Your post is deleted "+ res.data.deletedPost.res.id);
         window.location.reload()
     } catch (e) {
         console.error(e);
